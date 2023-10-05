@@ -6,7 +6,7 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:37:13 by lpetit            #+#    #+#             */
-/*   Updated: 2023/09/26 12:38:41 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/03 11:56:39 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -32,6 +32,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	tmp = ft_lstlast(*lst);
 	if (!tmp)
 		*lst = new;
-	tmp->next = new;
+	if (tmp)
+		tmp->next = new;
 	return ;
 }
