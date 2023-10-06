@@ -6,14 +6,14 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:37:13 by lpetit            #+#    #+#             */
-/*   Updated: 2023/10/03 11:56:39 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/06 17:20:22 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-static t_list	*ft_lstlast(t_list *lst)
+static t_list	*ft_lstlast_static(t_list *lst)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (!lst)
 		return (NULL);
@@ -29,10 +29,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 	if (!new)
 		return ;
-	tmp = ft_lstlast(*lst);
+	tmp = ft_lstlast_static(*lst);
 	if (!tmp)
 		*lst = new;
-	if (tmp)
+	else
 		tmp->next = new;
 	return ;
 }

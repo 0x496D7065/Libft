@@ -6,7 +6,7 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 12:03:33 by lpetit            #+#    #+#             */
-/*   Updated: 2023/09/20 12:16:39 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/06 17:21:25 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -26,4 +26,3 @@ void	ft_putendl_fd(char *s, int fd)
 	write(fd, "\n", 1);
 	return ;
 }
-
