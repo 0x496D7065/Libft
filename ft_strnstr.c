@@ -6,7 +6,7 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:55:42 by lpetit            #+#    #+#             */
-/*   Updated: 2023/09/12 14:46:54 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/17 13:14:18 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stddef.h>
@@ -17,6 +17,8 @@ char	*ft_strnstr(char const *haystack, char const *needle, size_t n)
 	size_t	word;
 	size_t	nedindex;
 
+	if (!haystack || !needle)
+		return (NULL);
 	if (*needle == '\0')
 		return ((char *)haystack);
 	i = 0;
