@@ -6,10 +6,40 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 11:59:32 by lpetit            #+#    #+#             */
-/*   Updated: 2023/09/12 13:53:18 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/19 17:41:36 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
+
+static size_t	ft_strlen(char const *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
+}
+
+static char	*ft_strdup(char const *s)
+{
+	char	*dest;
+	size_t	i;
+
+	i = 0;
+	dest = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!dest)
+		return (NULL);
+	while (s[i])
+	{
+		dest[i] = s[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
 
 static int	ft_isset(char c, char const *set)
 {
@@ -46,16 +76,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = 0;
 	end = 0;
 	if (!s1 || s1[0] == '\0')
-	{
-		cp = (char *)malloc(sizeof(char));
-		cp[0] = '\0';
-		return (cp);
-	}
+		return (ft_strdup(""));
 	while (s1[end])
 		end++;
 	end -= 1;
 	while (s1[start] && ft_isset(s1[start], set))
 		start++;
+	if (s1[start] == '\0')
+		return (ft_strdup(""));
 	while (s1[end] && ft_isset(s1[end], set))
 		end--;
 	cp = (char *)malloc(((end - start) + 2) * sizeof(char));

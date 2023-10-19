@@ -6,7 +6,7 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:48:21 by lpetit            #+#    #+#             */
-/*   Updated: 2023/09/12 13:54:20 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/19 15:48:33 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -28,8 +28,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*dest;
 
-	if (nmemb == 0 || size == 0)
-		return (NULL);
 	dest = (void *)malloc(nmemb * size);
 	if (!dest)
 		return (NULL);
