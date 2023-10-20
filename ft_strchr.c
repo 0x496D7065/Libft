@@ -6,7 +6,7 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:59:15 by lpetit            #+#    #+#             */
-/*   Updated: 2023/09/12 15:05:19 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/20 09:18:33 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	*ft_strchr(char const *s, int c)
 		if (*s == c)
 			return ((char *)s);
 		s++;
-		if (c == '\0' && *s == '\0')
-			return ((char *)s);
 	}
+	if (c == '\0' && *s == '\0')
+		return ((char *)s);
 	return (0);
 }
