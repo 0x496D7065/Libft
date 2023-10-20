@@ -6,7 +6,7 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:44:48 by lpetit            #+#    #+#             */
-/*   Updated: 2023/09/12 14:49:37 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/20 10:50:45 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strrchr(char const *s, int c)
 		i++;
 	while (i >= 0)
 	{
-		if (s[i] == c)
+		if (s[i] == (unsigned char)c)
 		{
 			s += i;
 			return ((char *)s);

@@ -6,14 +6,15 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 15:42:28 by lpetit            #+#    #+#             */
-/*   Updated: 2023/09/12 14:53:00 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/20 12:01:38 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <limits.h>
 
 int	ft_atoi(char const *nptr)
 {
-	int	sign;
-	int	nbr;
+	int				sign;
+	unsigned long	nbr;
 
 	sign = 0;
 	nbr = 0;
@@ -29,6 +30,10 @@ int	ft_atoi(char const *nptr)
 	{
 		nbr = (nbr * 10) + (*nptr - 48);
 		nptr++;
+		if (nbr > LLONG_MAX && ((sign % 2) == 0))
+			return (-1);
+		if (nbr > LLONG_MAX && ((sign % 2) > 0))
+			return (0);
 	}
 	if ((sign % 2) > 0)
 		nbr = -nbr;
