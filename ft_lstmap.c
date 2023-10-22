@@ -6,30 +6,82 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:41:50 by lpetit            #+#    #+#             */
-/*   Updated: 2023/10/20 12:14:00 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/22 17:08:37 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 #include "libft.h"
+//#include <unistd.h>
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*newlst;
 	t_list	*tmp;
-
+	//int i = 0;
 	if (!lst || !f || !del)
 		return (NULL);
-	newlst = NULL;
+	newlst = ft_lstnew(f(lst->content));
+	if (!newlst)
+		return (NULL);
+	tmp = newlst;
+	lst = lst->next;
 	while (lst)
 	{
-		tmp = ft_lstnew(f(lst->content));
-		if (!tmp)
+		//if (i == 1)
+			//newlst->next = NULL;
+		//else
+			newlst->next = ft_lstnew(f(lst->content));
+		if (!newlst->next)
 		{
-			ft_lstclear(&newlst, del);
+			ft_lstclear(&tmp, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&newlst, tmp);
+		newlst = newlst->next;
 		lst = lst->next;
+		i++;
 	}
-	return (newlst);
+	return (tmp);
 }
+/*
+void delete(void *content)
+{
+	char *str = (char *)content;
+	if (str == NULL)
+		return;
+	if (str[0] != '_' || str[1] != '_')
+		write(1, "error", 6);
+}
+
+void	*ft_plus_one(void *content)
+{
+	int	i = 0;
+	if (content)
+	{
+		//printf("%d\n", *(int *)content);
+		i = 1;
+		//printf("%d\n", *(int *)content);
+	}
+	return (content);
+}
+
+
+int	main(void)
+{
+	t_list	**lst;
+	t_list	*first;
+	t_list	*second;
+	t_list	*third;
+
+	lst = (t_list **)malloc(sizeof(t_list **));
+	first = ft_lstnew("one");
+	*lst = first;
+	second = ft_lstnew("two");
+	ft_lstadd_back(lst, second);
+	third = ft_lstnew("three");
+	ft_lstadd_back(lst, third);
+	ft_lstmap(*lst, ft_plus_one, delete);
+	free(first);
+	free(second);
+	free(third);
+	free(lst);
+}*/

@@ -6,7 +6,7 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:37:05 by lpetit            #+#    #+#             */
-/*   Updated: 2023/09/13 13:37:11 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/21 19:33:03 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -60,7 +60,7 @@ static char	*ft_create_str(char const *s, char c, char **tab, int tabindex)
 	str = (char *)malloc((len + 1) * sizeof(char));
 	if (!str)
 	{
-		ft_free_all_tab(tab, tabindex);
+		ft_free_all_tab(tab, tabindex - 1);
 		return (NULL);
 	}
 	while (len != 0)
@@ -69,6 +69,7 @@ static char	*ft_create_str(char const *s, char c, char **tab, int tabindex)
 		len--;
 	}
 	str[i] = '\0';
+	tab[tabindex] = str;
 	return (str);
 }
 
@@ -89,11 +90,10 @@ char	**ft_split(char const *s, char c)
 			s++;
 		if (*s)
 		{
-			tab[i] = ft_create_str(s, c, tab, i);
+			if (ft_create_str(s, c, tab, i) == NULL)
+				return (NULL);
 			i++;
 		}
-		if (!tab)
-			return (NULL);
 		while (*s && *s != c)
 			s++;
 	}
