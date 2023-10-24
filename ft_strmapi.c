@@ -6,7 +6,7 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 13:28:20 by lpetit            #+#    #+#             */
-/*   Updated: 2023/09/15 17:21:52 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/24 10:45:15 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -28,7 +28,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	char			*news;
 
-	if (!s)
+	if (!s || !f)
 		return (NULL);
 	i = 0;
 	news = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
