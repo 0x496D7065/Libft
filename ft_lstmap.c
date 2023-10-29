@@ -6,18 +6,18 @@
 /*   By: lpetit <lpetit@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:41:50 by lpetit            #+#    #+#             */
-/*   Updated: 2023/10/22 17:08:37 by lpetit           ###   ########.fr       */
+/*   Updated: 2023/10/27 20:32:44 by lpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 #include "libft.h"
-//#include <unistd.h>
+#include <unistd.h>
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*newlst;
 	t_list	*tmp;
-	//int i = 0;
+
 	if (!lst || !f || !del)
 		return (NULL);
 	newlst = ft_lstnew(f(lst->content));
@@ -27,10 +27,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	lst = lst->next;
 	while (lst)
 	{
-		//if (i == 1)
-			//newlst->next = NULL;
-		//else
-			newlst->next = ft_lstnew(f(lst->content));
+		newlst->next = ft_lstnew(f(lst->content));
 		if (!newlst->next)
 		{
 			ft_lstclear(&tmp, del);
@@ -38,7 +35,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		}
 		newlst = newlst->next;
 		lst = lst->next;
-		i++;
 	}
 	return (tmp);
 }
@@ -50,6 +46,7 @@ void delete(void *content)
 		return;
 	if (str[0] != '_' || str[1] != '_')
 		write(1, "error", 6);
+	free(content);
 }
 
 void	*ft_plus_one(void *content)
